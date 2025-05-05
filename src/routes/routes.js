@@ -5,12 +5,12 @@ const routes = [
     {
         method: 'POST',
         path: '/login',
-        handler: register
+        handler: login
     },
     {
         method: 'POST',
         path: '/register',
-        handler: login
+        handler: register
     },
 ];
 
