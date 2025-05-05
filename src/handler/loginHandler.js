@@ -37,7 +37,11 @@ const login = async (request, h) => {
     return h.response({
         status: 'success',
         message: 'Login Success',
-        token: token
+        data: {
+            userId: user.id,
+            username: user.username,
+            token: token
+        }
     }).code(200);
 }
 
