@@ -6,7 +6,7 @@ const register = async (request, h) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     try {
-        await db.query(`INSERT INTO users (name, username, password) VALUSE(?, ?, ?)`, [name, username, hashedPassword]);
+        await db.query(`INSERT INTO users (name, username, password) VALUES(?, ?, ?)`, [name, username, hashedPassword]);
         const response = h.response({
             status: 'success',
             message: 'Registrasi Berhasil'
