@@ -1,16 +1,13 @@
-const login = require("../handler/loginHandler");
-const register = require("../handler/registerHandler");
-
-const routes = [
+const routes = (handler) =>  [
     {
         method: 'POST',
-        path: '/login',
-        handler: login
+        path: '/users',
+        handler: handler.postUserHandler,
     },
     {
         method: 'POST',
-        path: '/register',
-        handler: register
+        path: '/users/{userId}',
+        handler: handler.getUserByIdHandler,
     },
 ];
 
