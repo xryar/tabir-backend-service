@@ -6,8 +6,8 @@ const plugins = require('./plugins/plugins');
 
 const init = async () => {
     const server = Hapi.server({
-        port: process.env.PORT || 5000,
-        host: process.env.HOST || '0.0.0.0',
+        port: process.env.PORT,
+        host: process.env.HOST,
         routes: {
             cors: {
                 origin: ['*'],
