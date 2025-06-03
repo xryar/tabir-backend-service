@@ -1,0 +1,259 @@
+{
+    "openapi":"3.0.3",
+    "info": {
+      "title":"Tabir RESTful API",
+      "description": "API Spec For Tangan Bicara",
+      "version":"1.0"
+    },
+    "servers": [
+      {"url":"https://tabir-backend-service-production.up.railway.app"}
+    ],
+    "paths": {
+        "/authentications": {
+            "post": {
+                "tags": ["Login"],
+                "description": "API for Login User",
+                "summary": "Login",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "username": {
+                                        "type": "string",
+                                        "example": "johndoe"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "yourpassword123"
+                                    }
+                                },
+                                "required": ["username", "password"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Login Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Authentikasi berhasil ditambahkan"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "accessToken": {
+                                                    "type": "string",
+                                                    "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                                                },
+                                                "refreshToken": {
+                                                    "type": "string",
+                                                    "example": "dGhpc2lzYXJlZnJlc2h0b2tlbg.."
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": ["Login"],
+                "description": "API for Update Token User",
+                "summary": "Update Token",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "refreshToken": {
+                                        "type": "string",
+                                        "example": "dGhpc2lzYXJlZnJlc2h0b2tlbg.."
+                                    }
+                                },
+                                "required": ["refreshToken"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Update Token Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Access Token berhasil diperbarui"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "accessToken": {
+                                                    "type": "string",
+                                                    "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Login"],
+                "description": "API for Delete Token User",
+                "summary": "Delete Token",
+                "responses": {
+                    "200": {
+                        "description": "Delete Refresh Token Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Refresh token berhasil dihapus"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users": {
+            "post": {
+                "tags": ["Register"],
+                "description": "API for Register User",
+                "summary": "Register",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "fullname": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "username": {
+                                        "type": "string",
+                                        "example": "johndoe24"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "yourpassword123"
+                                    }
+                                },
+                                "required": ["fullname", "username", "password"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Registration Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Registrasi berhasil"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "userId": {
+                                                    "type": "string",
+                                                    "example": "user-eyJhbGciOi"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": ["Get User"],
+                "description": "API for Get User By Id",
+                "summary": "Get User By Id",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "query",
+                        "description": "User Id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success Get User",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "example": "user-eyJhbGciOi"
+                                                },
+                                                "fullname": {
+                                                    "type": "string",
+                                                    "example": "John Doe"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+  }
