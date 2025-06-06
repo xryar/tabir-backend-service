@@ -26,6 +26,19 @@ class PredicitonsHandler {
     return response;
   }
 
+  async getPredictionsHandler(request, h) {
+    const { id: credentialId } = request.auth.credentials;
+
+    const predictions = await this._service.getPredictionsByUserId(credentialId);
+
+    return h.response({
+      status: 'success',
+      data: {
+        predictions
+      }
+    });
+  }
+
   async getPredictionByIdHandler(request, h) {
     const { id } = request.params;
     const { id: credentialId } = request.auth.credentials;

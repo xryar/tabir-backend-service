@@ -9,6 +9,14 @@ const routes = (handler) => [
   },
   {
     method: 'GET',
+    path: '/predictions',
+    handler: handler.getPredictionsHandler,
+    options: {
+      auth: 'tabir_jwt',
+    }
+  },
+  {
+    method: 'GET',
     path: '/predictions/{id}',
     handler: handler.getPredictionByIdHandler,
     options: {

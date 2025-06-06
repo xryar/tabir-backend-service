@@ -27,6 +27,19 @@ class PredictionsService {
     return result.rows[0].id;
   }
 
+  async getPredictionsByUserId(userId) {
+    const query = {
+      text: `SELECT predictions.id, users.username, predictions.prediction, predictions.created_at
+      FROM predictions
+      JOIN users on users.id = predictions.user_id
+      WHERE predictions.user_id = $1
+      ORDER BY predictions.created_at DESC`,
+      values: [userId]
+    };
+    const result = await this._pool.query(query);
+    return result.rows;
+  }
+
   async getPredictionById(id) {
     const query = {
       text: `SELECT * FROM predictions
