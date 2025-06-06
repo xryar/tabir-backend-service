@@ -17,7 +17,7 @@ const routes = (handler) => [
   },
   {
     method: 'DELETE',
-    path: 'predictions/{id}',
+    path: '/predictions/{id}',
     handler: handler.deletePredictionByIdHandler,
     options: {
       auth: 'tabir_jwt',

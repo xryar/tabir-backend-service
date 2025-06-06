@@ -6,7 +6,7 @@ const AuthorizationError = require('../../exceptions/AuthorizationError');
 
 class PredictionsService {
   constructor() {
-    this._pool = Pool();
+    this._pool = new Pool();
   }
 
   async addPrediction({ prediction, userId }) {
@@ -27,10 +27,9 @@ class PredictionsService {
     return result.rows[0].id;
   }
 
-  async getPredictionsById(id) {
+  async getPredictionById(id) {
     const query = {
-      text: `SELECT predictions.*, users.username
-        FROM predictions
+      text: `SELECT * FROM predictions
         JOIN users ON users.id = predictions.user_id
         WHERE predictions.id = $1`,
       values: [id],
