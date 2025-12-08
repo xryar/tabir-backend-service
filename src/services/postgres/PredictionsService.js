@@ -6,12 +6,7 @@ const AuthorizationError = require('../../exceptions/AuthorizationError');
 
 class PredictionsService {
   constructor() {
-    this._pool = new Pool({
-      connectionString: process.env.DATABASE_URL,
-      ssl: {
-        rejectUnauthorized: false,
-      },
-    });
+    this._pool = new Pool();
   }
 
   async addPrediction({ prediction, userId }) {
